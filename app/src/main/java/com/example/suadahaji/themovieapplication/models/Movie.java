@@ -1,12 +1,15 @@
 package com.example.suadahaji.themovieapplication.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by suadahaji
+ * Parcelable interface will help in passing data between the components.
  */
 
-public class Movie {
+public class Movie implements Parcelable{
 
     @SerializedName("id")
     private int id;
@@ -41,6 +44,30 @@ public class Movie {
         this.overview = overview;
         this.releaseDate = releaseDate;
     }
+
+    protected Movie(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        voteCount = in.readInt();
+        voteAverage = in.readDouble();
+        posterPath = in.readString();
+        originalTitle = in.readString();
+        backdropPath = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -112,5 +139,23 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeInt(voteCount);
+        dest.writeDouble(voteAverage);
+        dest.writeString(posterPath);
+        dest.writeString(originalTitle);
+        dest.writeString(backdropPath);
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
     }
 }
