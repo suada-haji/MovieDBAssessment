@@ -1,5 +1,6 @@
 package com.example.suadahaji.themovieapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,13 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.suadahaji.themovieapplication.api.ApiClient;
 import com.example.suadahaji.themovieapplication.models.Movie;
 import com.example.suadahaji.themovieapplication.mvp_movie_listing.MovieListAdapter;
 import com.example.suadahaji.themovieapplication.mvp_movie_listing.MoviePresenterImpl;
 import com.example.suadahaji.themovieapplication.mvp_movie_listing.MovieView;
+import com.example.suadahaji.themovieapplication.util.Constants;
 
 import java.util.ArrayList;
 
@@ -23,8 +24,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements MovieView {
-
-    public static final String MOVIE = "movie";
 
     private MoviePresenterImpl presenter;
 
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements MovieView {
         apiClient = new ApiClient();
         presenter = new MoviePresenterImpl(apiClient, Schedulers.io(), AndroidSchedulers.mainThread());
         presenter.setView(this);
-        presenter.displayMovies();
 
         setupRecyclerView();
     }
@@ -68,6 +66,18 @@ public class MainActivity extends AppCompatActivity implements MovieView {
             getSupportActionBar().setTitle("Popular Movies");
             getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.setView(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.displayMovies();
     }
 
     private void setupRecyclerView() {
@@ -110,12 +120,14 @@ public class MainActivity extends AppCompatActivity implements MovieView {
 
     @Override
     public void onMovieClicked(Movie movie) {
-        Toast.makeText(this, "Movie clicked!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra(Constants.MOVIE, movie);
+        startActivity(intent);
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    public void onStop() {
+        super.onStop();
         presenter.destroyView();
     }
 }
