@@ -15,13 +15,13 @@ public class Movie {
     @SerializedName("vote_count")
     private int voteCount;
     @SerializedName("vote_average")
-    private int voteAverage;
+    private double voteAverage;
     @SerializedName("poster_path")
-    private int posterPath;
+    private String posterPath;
     @SerializedName("original_title")
-    private int originalTitle;
+    private String originalTitle;
     @SerializedName("backdrop_path")
-    private int backdropPath;
+    private String backdropPath;
     @SerializedName("overview")
     private String overview;
     @SerializedName("release_date")
@@ -30,7 +30,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int id, String title, int voteCount, int voteAverage, int posterPath, int originalTitle, int backdropPath, String overview, String releaseDate) {
+    public Movie(int id, String title, int voteCount, double voteAverage, String posterPath, String originalTitle, String backdropPath, String overview, String releaseDate) {
         this.id = id;
         this.title = title;
         this.voteCount = voteCount;
@@ -66,35 +66,35 @@ public class Movie {
         this.voteCount = voteCount;
     }
 
-    public int getVoteAverage() {
+    public double getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(int voteAverage) {
+    public void setVoteAverage(double voteAverage) {
         this.voteAverage = voteAverage;
     }
 
-    public int getPosterPath() {
+    public String getPosterPath() {
         return posterPath;
     }
 
-    public void setPosterPath(int posterPath) {
+    public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
 
-    public int getOriginalTitle() {
+    public String getOriginalTitle() {
         return originalTitle;
     }
 
-    public void setOriginalTitle(int originalTitle) {
+    public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
     }
 
-    public int getBackdropPath() {
+    public String getBackdropPath() {
         return backdropPath;
     }
 
-    public void setBackdropPath(int backdropPath) {
+    public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
     }
 

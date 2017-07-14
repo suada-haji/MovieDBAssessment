@@ -1,7 +1,7 @@
 package com.example.suadahaji.themovieapplication.mvp_movie_listing;
 
 /**
- * Created by suadahaji
+ * Bridges between the presentation layer and the data layer
  */
 
 public interface MovieInteractor {

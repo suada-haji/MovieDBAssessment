@@ -1,5 +1,7 @@
 package com.example.suadahaji.themovieapplication.mvp_movie_listing;
 
+import android.util.Log;
+
 import com.example.suadahaji.themovieapplication.api.ApiManager;
 import com.example.suadahaji.themovieapplication.models.Movie;
 import com.example.suadahaji.themovieapplication.models.MovieResponse;
@@ -49,15 +51,20 @@ public class MovieInteractorImpl implements MovieInteractor {
                             public void accept(@NonNull MovieResponse movieResponse) throws Exception {
                                 if (movieResponse == null || movieResponse.getMovies() == null || movieResponse.getMovies().size() == 0) {
                                     listener.displayEmptyState();
+                                    Log.d("Suada", "Empty State");
+
                                 }
 
                                 ArrayList<Movie> movies = movieResponse.getMovies();
                                 listener.onMovieResponse(movies);
+                                Log.d("Suada", "Size is " + movies.size());
                             }
                         }, new Consumer<Throwable>() {
                             @Override
                             public void accept(@NonNull Throwable throwable) throws Exception {
                                 listener.displayErrorState();
+                                Log.d("Suada", "Error State");
+                                Log.d("Suada", "Error State" + throwable.getMessage());
                             }
                         }
                 )

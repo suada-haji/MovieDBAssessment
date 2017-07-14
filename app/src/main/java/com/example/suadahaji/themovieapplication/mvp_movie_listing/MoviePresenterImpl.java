@@ -16,8 +16,6 @@ public class MoviePresenterImpl implements MoviePresenter<MovieView>, MovieListe
     private MovieView movieView;
     private MovieInteractorImpl interactor;
 
-    private ApiClient apiClient = new ApiClient();
-
     public MoviePresenterImpl(ApiClient apiClient, Scheduler subscribeOn, Scheduler observeOn) {
         interactor = new MovieInteractorImpl(apiClient.provideApiManager(), this, subscribeOn, observeOn);
     }
@@ -56,7 +54,6 @@ public class MoviePresenterImpl implements MoviePresenter<MovieView>, MovieListe
     @Override
     public void displayEmptyState() {
         movieView.showEmptyStateMsg();
-
     }
 
     private boolean isViewAttached() {

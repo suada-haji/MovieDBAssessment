@@ -5,7 +5,7 @@ import com.example.suadahaji.themovieapplication.models.Movie;
 import java.util.ArrayList;
 
 /**
- * Created by suadahaji
+ * listens for the data access layer callback
  */
 
 public interface MovieListener {
