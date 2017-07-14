@@ -10,10 +10,10 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.suadahaji.themovieapplication.R;
 import com.example.suadahaji.themovieapplication.models.Movie;
 import com.example.suadahaji.themovieapplication.util.Constants;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -73,7 +73,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         setAnimation(holder.itemView, position);
         holder.itemView.setOnClickListener(holder);
         holder.movie = movies.get(position);
-        Picasso.with(context).load(Constants.POSTER_PATH + holder.movie.getPosterPath()).into(holder.movieImage);
+        Glide.with(context).load(Constants.POSTER_PATH + holder.movie.getPosterPath()).into(holder.movieImage);
         holder.movieName.setText(holder.movie.getTitle());
     }
 
