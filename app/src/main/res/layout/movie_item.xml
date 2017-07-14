@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="@dimen/margin_320"
     android:layout_gravity="center"
     android:clickable="true"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/margin_10dp"
 
     android:foreground="?attr/selectableItemBackground">
 
@@ -19,7 +19,7 @@
     <View
         android:id="@+id/title_background"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/margin_48dp"
         android:layout_gravity="bottom"
         android:alpha="0.8"
         android:background="@color/colorPrimaryDark"
@@ -28,12 +28,12 @@
     <TextView
         android:id="@+id/movie_name"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/margin_48dp"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textColor="@android:color/white"
-        android:textSize="12sp"/>
+        android:textSize="@dimen/text_12sp"/>
 
 </FrameLayout>
