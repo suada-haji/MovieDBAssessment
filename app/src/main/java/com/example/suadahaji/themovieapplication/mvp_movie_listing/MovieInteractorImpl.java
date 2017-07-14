@@ -36,7 +36,7 @@ public class MovieInteractorImpl implements MovieInteractor {
     }
 
     @Override
-    public void loadMovies() {
+    public Observable<MovieResponse> loadMovies() {
         Observable<MovieResponse> movieResponseObservable = apiManager.getPopularMovies();
 
         compositeDisposable.add(
@@ -61,6 +61,8 @@ public class MovieInteractorImpl implements MovieInteractor {
                         }
                 )
         );
+
+        return movieResponseObservable;
 
     }
 
